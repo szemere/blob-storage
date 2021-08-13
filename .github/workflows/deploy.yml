@@ -1,0 +1,22 @@
+name: Deploy site
+
+on:
+  workflow_run:
+    workflows: ["Build site"]
+    branches: [main]
+    types: [completed]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout syslog-ng source
+        uses: actions/checkout@v2
+            
+      - name: Upload to Azure blob storage
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: |
+              az storage blob upload-batch --connection-string ${{ secrets.AZURE_CONNECTION_STRING }} -d '$web' -s ./content
