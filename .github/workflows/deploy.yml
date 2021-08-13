@@ -18,4 +18,4 @@ jobs:
         with:
           azcliversion: 2.0.72
           inlineScript: |
-              az storage blob upload-batch --connection-string ${{ secrets.AZURE_CONNECTION_STRING }} -d '$web' -s ./content
+              az storage blob upload-batch -d '$web' -s ./content --connection-string ${{ secrets.AZURE_CONNECTION_STRING }}
