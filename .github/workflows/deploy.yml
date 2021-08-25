@@ -10,17 +10,15 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout syslog-ng source
-        uses: actions/checkout@v2
-
       - name: Create temporary files
-        run: touch /tmp/alma.txt
+        run:
+          MY_WORKDIR=$(mktemp --tmpdir=$GITHUB_WORKSPACE -d tarball-XXXXX)
 
       - name: Upload to Azure blob storage
         uses: azure/CLI@v1
         with:
           azcliversion: 2.0.72
           inlineScript: |
-               ls /tmp/
+               ls $GITHUB_WORKSPACE
 
 #              az storage blob upload-batch --sas-token '${{ secrets.AZURE_SAS_TOKEN }}' --account-name 'szemerestorage2' --source content/ --destination '$web/test'
