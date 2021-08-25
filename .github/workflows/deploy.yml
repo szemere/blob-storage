@@ -20,6 +20,11 @@ jobs:
           echo "cat GITHUB_ENV"
           cat $GITHUB_ENV
 
+      - name: check step
+        run: |
+          echo "check step, my_workspace: $MY_WORKSPACE"
+
+
       - name: Upload to Azure blob storage
         uses: azure/CLI@v1
         with:
