@@ -25,7 +25,7 @@ jobs:
                echo "githubenv: ${GITHUB_ENV}"
                
                echo "ls github env"
-               ls $GITHUB_ENV
+               ls -hal $GITHUB_ENV
                
                echo "cat github env"
                cat $GITHUB_ENV
