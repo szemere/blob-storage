@@ -30,25 +30,25 @@ jobs:
         with:
           azcliversion: 2.0.72
           inlineScript: |
-                  echo "githubenv: ${GITHUB_ENV}"
-                  
-                  echo "ls github env"
-                  ls -hal ${GITHUB_ENV}
-                  
-                  echo "cat github env"
-                  cat ${GITHUB_ENV}
+                echo "githubenv: ${GITHUB_ENV}"
+                
+                echo "ls github env"
+                ls -hal ${GITHUB_ENV}
+                
+                echo "cat github env"
+                cat ${GITHUB_ENV}
 
-                  echo "ls github workspace"
-                  ls ${GITHUB_WORKSPACE}
+                echo "ls github workspace"
+                ls ${GITHUB_WORKSPACE}
 
-                  echo "MY_WORKSPACE: ${MY_WORKSPACE}"
-                  echo "MY_WORKSPACE_NAME: ${MY_WORKSPACE_NAME}"
+                echo "MY_WORKSPACE: ${MY_WORKSPACE}"
+                echo "MY_WORKSPACE_NAME: ${MY_WORKSPACE_NAME}"
 
-                  echo "ls myworkspace_name: ${GITHUB_WORKSPACE}/${MY_WORKSPACE_NAME}"
-                  ls ${GITHUB_WORKSPACE}/${MY_WORKSPACE_NAME}
+                echo "ls myworkspace_name: ${GITHUB_WORKSPACE}/${MY_WORKSPACE_NAME}"
+                ls ${GITHUB_WORKSPACE}/${MY_WORKSPACE_NAME}
 
-               echo "export"
-               export
+                echo "export"
+                export
 
 #               ls $GITHUB_WORKSPACE
 #              az storage blob upload-batch --sas-token '${{ secrets.AZURE_SAS_TOKEN }}' --account-name 'szemerestorage2' --source content/ --destination '$web/test'
