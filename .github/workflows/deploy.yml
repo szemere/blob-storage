@@ -17,7 +17,8 @@ jobs:
           echo "MY_WORKSPACE=$MY_WORKSPACE" >> $GITHUB_ENV
           echo "MY_WORKSPACE_NAME=$MY_WORKSPACE_NAME" >> $GITHUB_ENV
           echo "GITHUB_ENV: $GITHUB_ENV"
-
+          echo "cat GITHUB_ENV"
+          cat $GITHUB_ENV
 
       - name: Upload to Azure blob storage
         uses: azure/CLI@v1
