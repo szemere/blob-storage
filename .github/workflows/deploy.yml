@@ -22,6 +22,8 @@ jobs:
         with:
           azcliversion: 2.0.72
           inlineScript: |
+               echo "githubenv"
+               cat $GITHUB_ENV
                export
                ls $GITHUB_WORKSPACE/$MY_WORKSPACE_NAME
 
