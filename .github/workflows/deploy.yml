@@ -12,10 +12,15 @@ jobs:
     steps:
       - name: Checkout syslog-ng source
         uses: actions/checkout@v2
-            
+
+      - name: Create temporary files
+        run: touch /tmp/alma.txt
+
       - name: Upload to Azure blob storage
         uses: azure/CLI@v1
         with:
           azcliversion: 2.0.72
           inlineScript: |
-              az storage blob upload-batch --sas-token '${{ secrets.AZURE_SAS_TOKEN }}' --account-name 'szemerestorage2' --source content/ --destination '$web/test/'
+               ls /tmp/
+
+#              az storage blob upload-batch --sas-token '${{ secrets.AZURE_SAS_TOKEN }}' --account-name 'szemerestorage2' --source content/ --destination '$web/test'
