@@ -22,10 +22,19 @@ jobs:
         with:
           azcliversion: 2.0.72
           inlineScript: |
-               echo "githubenv"
+               echo "githubenv: ${GITHUB_ENV}"
+               
+               echo "ls github env"
+               ls $GITHUB_ENV
+               
+               echo "cat github env"
                cat $GITHUB_ENV
+
+               echo "export"
                export
-               ls $GITHUB_WORKSPACE/$MY_WORKSPACE_NAME
+
+               echo "ls github workspace"
+               ls $GITHUB_WORKSPACE
 
 #               ls $GITHUB_WORKSPACE
 #              az storage blob upload-batch --sas-token '${{ secrets.AZURE_SAS_TOKEN }}' --account-name 'szemerestorage2' --source content/ --destination '$web/test'
