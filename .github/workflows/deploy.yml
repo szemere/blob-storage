@@ -11,14 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create temporary files
-        run:
-          MY_WORKDIR=$(mktemp --tmpdir=$GITHUB_WORKSPACE -d tarball-XXXXX)
+        run: |
+          MY_WORKSPACE=$(mktemp --tmpdir=$GITHUB_WORKSPACE -d tarball-XXXXX)
+          MY_WORKSPACE_NAME=${MY_WORKSPACE##"$GITHUB_WORKSPACE/"}
+          echo "MY_WORKSPACE=$MY_WORKSPACE" >> $GITHUB_ENV
+          echo "MY_WORKSPACE_NAME=$MY_WORKSPACE_NAME" >> $GITHUB_ENV
 
       - name: Upload to Azure blob storage
         uses: azure/CLI@v1
         with:
           azcliversion: 2.0.72
           inlineScript: |
-               ls $GITHUB_WORKSPACE
+               ls $GITHUB_WORKSPACE/$MY_WORKSPACE_NAME
 
+#               ls $GITHUB_WORKSPACE
 #              az storage blob upload-batch --sas-token '${{ secrets.AZURE_SAS_TOKEN }}' --account-name 'szemerestorage2' --source content/ --destination '$web/test'
