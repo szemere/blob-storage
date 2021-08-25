@@ -30,7 +30,7 @@ jobs:
       - name: Upload to Azure blob storage
         uses: azure/CLI@v1
         env:
-          HELLO: ${{ github.workspace }}/${{ env.MY_WORKSPACE_NAME }}
+          HELLO: $GITHUB_WORKSPACE/$MY_WORKSPACE_NAME
         with:
           azcliversion: 2.0.72
           inlineScript: |
