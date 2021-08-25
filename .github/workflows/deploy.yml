@@ -14,16 +14,18 @@ jobs:
         run: |
           MY_WORKSPACE=$(mktemp --tmpdir=$GITHUB_WORKSPACE -d tarball-XXXXX)
           MY_WORKSPACE_NAME=${MY_WORKSPACE##"$GITHUB_WORKSPACE/"}
+
           echo "MY_WORKSPACE=$MY_WORKSPACE" >> $GITHUB_ENV
           echo "MY_WORKSPACE_NAME=$MY_WORKSPACE_NAME" >> $GITHUB_ENV
+
           echo "GITHUB_ENV: $GITHUB_ENV"
           echo "cat GITHUB_ENV"
           cat $GITHUB_ENV
 
-      - name: check step
+      - name: check step - add content
         run: |
           echo "check step, my_workspace: $MY_WORKSPACE"
-
+          echo "Hello World" >> ${MY_WORKSPACE}/helloworld.txt
 
       - name: Upload to Azure blob storage
         uses: azure/CLI@v1
@@ -38,7 +40,7 @@ jobs:
                 echo "cat github env"
                 cat ${GITHUB_ENV}
 
-                echo "ls github workspace"
+                echo "ls github workspace: ${GITHUB_WORKSPACE}"
                 ls ${GITHUB_WORKSPACE}
 
                 echo "MY_WORKSPACE: ${MY_WORKSPACE}"
