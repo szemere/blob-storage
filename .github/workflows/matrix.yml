@@ -13,12 +13,22 @@ jobs:
       fail-fast: false
       matrix:
         distribution:
-          - [ubuntu-focal, deb]
-          - [ubuntu-xenial, deb]
-          - [fedora-33, rpm]
-          - [fedora-32, rpm]
+          - { 'name': 'ubuntu-focal',  'package-manager': 'deb' }
+          - { 'name': 'ubuntu-xenial', 'package-manager': 'deb' }
+          - { 'name': 'fedora-33',     'package-manager': 'rpm' }
+          - { 'name': 'fedora-32',     'package-manager': 'rpm' }
     steps:
       - name: First step
         run: |
           echo "matrix-distribution-0: ${{ matrix.distribution[0] }}"
           echo "matrix-distribution-1: ${{ matrix.distribution[1] }}"
+
+      - name: Secomd step
+        run: |
+          echo "matrix-distribution-name: ${{ matrix.distribution.name }}"
+          echo "matrix-distribution-package-manager: ${{ matrix.distribution.package-manager }}"
+
+      - name: Deb only
+        if: matrix.distribution.package-manager == 'deb'
+        run: |
+          echo "Packaages for: ${{ matrix.distribution.name }}"
