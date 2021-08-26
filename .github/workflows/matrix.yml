@@ -1,0 +1,24 @@
+name: Matrix test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  myjob:
+    name: My Job
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        distribution:
+          - [ubuntu-focal, deb]
+          - [ubuntu-xenial, deb]
+          - [fedora-33, rpm]
+          - [fedora-32, rpm]
+    steps:
+      - name: First step
+        run: |
+          echo "matrix-distribution-0: ${{ matrix.distribution[0] }}"
+          echo "matrix-distribution-1: ${{ matrix.distribution[1] }}"

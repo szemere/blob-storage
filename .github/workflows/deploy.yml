@@ -3,7 +3,7 @@ name: Deploy site
 on:
   push:
     branches:
-      - master
+      - master-not-exists
 
 jobs:
   deploy:
@@ -35,7 +35,7 @@ jobs:
           azcliversion: 2.0.72
           inlineScript: |
                 echo "hello:"
-                echo '$HELLO'
+                echo "'${HELLO}'"
 
 #                echo "githubenv: ${GITHUB_ENV}"
 #                
